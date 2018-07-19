@@ -45,7 +45,11 @@ namespace UnitTests
 
         TestPacket _defaultTestPacket;
 
+#if !NETCOREAPP2_0
         [TestFixtureSetUp]
+#else
+        [OneTimeSetUp]
+#endif
         public void Init()
         {
             _defaultTestPacket = new TestPacket(new byte[] { 0xA5, 0xB6, 0xC7, 0xD8, 0xE9, 0xFA, 0x0B, 0x1C, 0x2D, 0x3E, 0x4F, 0x50 });

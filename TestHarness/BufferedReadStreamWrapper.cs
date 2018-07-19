@@ -6,13 +6,19 @@ using System.IO;
 
 namespace NVorbis
 {
+    #if !NETCOREAPP2_0
     public partial class BufferedReadStream
     {
     }
+    #endif
 }
 namespace TestHarness
 {
+    #if !NETCOREAPP2_0
     public class BufferedReadStream : NVorbis.BufferedReadStream
+    #else
+    class BufferedReadStream : NVorbis.BufferedReadStream
+    #endif
     {
         public BufferedReadStream(Stream baseStream)
             : base(baseStream)

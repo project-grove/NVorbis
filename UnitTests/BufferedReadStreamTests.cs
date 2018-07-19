@@ -87,7 +87,11 @@ namespace UnitTests
         MemoryStream _baseStream;
         TestHarness.BufferedReadStream _readBuffer;
 
+#if !NETCOREAPP2_0
         [TestFixtureSetUp]
+#else
+        [OneTimeSetUp]
+#endif
         public void Init()
         {
             _baseStream = new MemoryStream(4096);
@@ -120,7 +124,11 @@ namespace UnitTests
             }
         }
 
+#if !NETCOREAPP2_0
         [TestFixtureTearDown]
+#else
+        [OneTimeTearDown]
+#endif
         public void TearDown()
         {
             _baseStream.Dispose();
